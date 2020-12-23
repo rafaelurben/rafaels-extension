@@ -1,0 +1,46 @@
+{
+
+  "name": "Rafaels Extension",
+  "description": "This is a test-extension by rafaelurben",
+  "manifest_version": 2,
+  "version": "1.0",
+  "homepage_url": "https://github.com/rafaelurben/rafaels-extension",
+  "icons": {
+    "32": "icons/rafael32.png"
+  },
+
+  "permissions": ["storage"],
+
+  "background": {
+    "scripts": ["scripts/background.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://www.nitrotype.com/*"],
+      "run_at": "document_start",
+      "js": ["scripts/nitrotype.js"]
+    }
+  ],
+
+  "options_ui": {
+    "page": "pages/options.html",
+    "browser_style": true,
+    "chrome_style": true
+  },
+
+  "browser_action": {
+    "default_icon": "icons/rafael32.png",
+    "default_title": "Rafaels Extension - Settings",
+    "default_popup": "pages/options.html",
+    "browser_style": true,
+    "chrome_style": true
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "addon@example.com"
+    }
+  }
+
+}
