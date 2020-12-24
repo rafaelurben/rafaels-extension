@@ -3,7 +3,7 @@
   "name": "Rafaels Extension",
   "description": "This is a test-extension by rafaelurben",
   "manifest_version": 2,
-  "version": "1.0",
+  "version": "1.1",
   "homepage_url": "https://github.com/rafaelurben/rafaels-extension",
   "icons": {
     "32": "icons/rafael32.png"
@@ -20,6 +20,11 @@
       "matches": ["*://www.nitrotype.com/*"],
       "run_at": "document_start",
       "js": ["scripts/nitrotype.js"]
+    },
+    {
+      "matches": ["*://kahoot.it/*"],
+      "run_at": "document_start",
+      "js": ["scripts/kahoot.js"]
     }
   ],
 
@@ -39,7 +44,7 @@
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "addon@example.com"
+      "id": "test@rafaelurben.addons.mozilla.org"
     }
   }
 

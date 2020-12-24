@@ -23,17 +23,19 @@ function nitrotype_check_session_reload() {
     }
 }
 
+// Start
+
 function onError(error) {
-    console.log(`Error: ${error}`);
+    console.log(`[NitroType SessionSaver] - Error: ${error}`);
 }
 
 function onGot(item) {
     state = item.nitrotype_activated || false;
     if (state) {
-        console.log("[NitroType SessionSaver] - Activated!")
+        console.log("[NitroType SessionSaver] - Activated!");
         nitrotype_check_session_reload();
     } else {
-        console.log("[NitroType SessionSaver] - NOT Activated!")
+        console.log("[NitroType SessionSaver] - NOT Activated!");
     }
 }
 
