@@ -3,13 +3,13 @@
   "name": "Rafaels Extension",
   "description": "This is a test-extension by rafaelurben",
   "manifest_version": 2,
-  "version": "1.1",
+  "version": "1.3",
   "homepage_url": "https://github.com/rafaelurben/rafaels-extension",
   "icons": {
     "32": "icons/rafael32.png"
   },
 
-  "permissions": ["storage"],
+  "permissions": ["storage", "activeTab", "contextMenus", "clipboardWrite"],
 
   "background": {
     "scripts": ["scripts/background.js"]
@@ -19,12 +19,12 @@
     {
       "matches": ["*://www.nitrotype.com/*"],
       "run_at": "document_start",
-      "js": ["scripts/nitrotype.js"]
+      "js": ["scripts/content_scripts/nitrotype.js"]
     },
     {
       "matches": ["*://kahoot.it/*"],
       "run_at": "document_start",
-      "js": ["scripts/kahoot.js"]
+      "js": ["scripts/content_scripts/kahoot.js"]
     }
   ],
 
