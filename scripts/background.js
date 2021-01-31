@@ -16,17 +16,17 @@ function showConversion(text, type) {
 console.log("Background running!");
 
 browser.contextMenus.create({
-    id: "base64-text",
+    id: "convert-base64-text",
     title: "Base64 -> Text",
     contexts: ["selection"]
 });
 browser.contextMenus.create({
-    id: "text-base64",
+    id: "convert-text-base64",
     title: "Text -> Base64",
     contexts: ["selection"]
 });
 browser.contextMenus.create({
-    id: "image-text",
+    id: "convert-image-text",
     title: "Get hidden text in image",
     contexts: ["image"]
 });
@@ -34,43 +34,17 @@ browser.contextMenus.create({
 browser.contextMenus.onClicked.addListener(function (info, tab) {
     console.log(info);
     switch (info.menuItemId) {
-        case "base64-text":
+        case "convert-base64-text":
             {
                 showConversion(info.selectionText, "base64-text");
-                // try {
-                //     newtext = atob(info.selectionText);
-                //     console.log(info.selectionText, " -> ", newtext);
-                //     navigator.clipboard.writeText(newtext);
-                //     browser.tabs.executeScript({
-                //         code: "alert(`" + newtext + "`);"
-                //     });
-                // } catch (e) {
-                //     console.log(e);
-                //     browser.tabs.executeScript({
-                //         code: `alert("Failed to decode base64!");`
-                //     });
-                // }
                 break;
             }
-        case "text-base64":
+        case "convert-text-base64":
             {
                 showConversion(info.selectionText, "text-base64");
-                // try {
-                //     newtext = btoa(info.selectionText);
-                //     console.log(info.selectionText, " -> ", newtext);
-                //     navigator.clipboard.writeText(newtext);
-                //     browser.tabs.executeScript({
-                //         code: "alert(`" + newtext + "`);"
-                //     });
-                // } catch (e) {
-                //     console.log(e);
-                //     browser.tabs.executeScript({
-                //         code: `alert("Failed to encode base64!");`
-                //     });
-                // }
                 break;
             }
-        case "image-text":
+        case "convert-image-text":
             {
                 url = info.srcUrl;
                 console.log(url);   

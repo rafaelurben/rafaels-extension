@@ -3,7 +3,7 @@
   "name": "Rafaels Extension",
   "description": "This is a test-extension by rafaelurben",
   "manifest_version": 2,
-  "version": "1.3",
+  "version": "2.0.2",
   "homepage_url": "https://github.com/rafaelurben/rafaels-extension",
   "icons": {
     "32": "icons/rafael32.png"
