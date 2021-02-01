@@ -13,6 +13,18 @@ function showConversion(text, type) {
     });
 }
 
+function openUrl(url) {
+    console.log("Opening "+url);
+    browser.tabs.create({ url: url });
+}
+
+function openPhotopea(fileUrl, script="") {
+    data = { "files": [fileUrl], "script": script };
+    data = encodeURI(JSON.stringify(data));
+    url = "https://www.photopea.com#" + data;
+    openUrl(url);
+}
+
 //
 
 let converters = {
@@ -37,20 +49,17 @@ for (c in converters) {
 //
 
 browser.contextMenus.create({
-    id: "convert-image-text",
-    title: "Get hidden text in image",
+    id: "image-open-in-photopea",
+    title: "Open in Photopea",
     contexts: ["image"]
 });
 
 //
 
 browser.contextMenus.onClicked.addListener(function (info, tab) {
-    console.log(info);
     if (info.menuItemId.startsWith("convert-")) {
         showConversion(info.selectionText, info.menuItemId.replace("convert-", ""))
-    } else if (info.menuItemId === "convert-image-text") {
-        url = info.srcUrl;
-        console.log(url);
-        // TODO: Fetch url and read hidden text at the end of the file
+    } else if (info.menuItemId === "image-open-in-photopea") {
+        openPhotopea(info.srcUrl, "alert('Loaded document!')");
     }
 });
