@@ -4,11 +4,11 @@ console.log("Background running!");
 
 //
 
-function showConversion(text, type) {
+function openConverter(text, type = "text-base64") {
     browser.tabs.create({ url: "/pages/conversion.html" }).then(() => {
         console.log("Opened conversion tab!");
         browser.tabs.executeScript({
-            code: "setConversion(`"+text+"`,`"+type+"`); convert();"
+            code: "setConversion(`" + text + "`,`" + type + "`); convert();"
         });
     });
 }
@@ -38,15 +38,27 @@ let converters = {
     "hex-dec": "Hex -> Dec"
 }
 
+//
+
+browser.contextMenus.create({
+    id: "text-open-in-converter",
+    title: "Open in converter",
+    contexts: ["selection"]
+});
+
+browser.contextMenus.create({
+    id: "convert-separator",
+    type: "separator",
+    contexts: ["selection"]
+});
+
 for (c in converters) {
     browser.contextMenus.create({
-        id: "convert-"+c,
+        id: "convert-" + c,
         title: converters[c],
         contexts: ["selection"]
     });
 }
-
-//
 
 browser.contextMenus.create({
     id: "image-open-in-photopea",
@@ -58,7 +70,9 @@ browser.contextMenus.create({
 
 browser.contextMenus.onClicked.addListener(function (info, tab) {
     if (info.menuItemId.startsWith("convert-")) {
-        showConversion(info.selectionText, info.menuItemId.replace("convert-", ""))
+        openConverter(info.selectionText, info.menuItemId.replace("convert-", ""))
+    } else if (info.menuItemId === "text-open-in-converter") {
+        openConverter(info.selectionText);
     } else if (info.menuItemId === "image-open-in-photopea") {
         openPhotopea(info.srcUrl, "alert('Loaded document!')");
     }

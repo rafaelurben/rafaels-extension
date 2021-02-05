@@ -26,7 +26,7 @@ function sysConvert(start, end, text) {
 
 //
 
-function setConversion(text, type) {
+function setConversion(text, type="text-base64") {
     forminput.value = text;
     formconversiontype.value = type;
 }
