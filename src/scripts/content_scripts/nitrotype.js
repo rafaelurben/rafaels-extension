@@ -25,6 +25,10 @@ function nitrotype_check_session_reload() {
 
 // Start
 
+if (location.pathname == "/") {
+    location.pathname = "/login";
+}
+
 function onError(error) {
     console.log(`[NitroType SessionSaver] - Error: ${error}`);
 }
