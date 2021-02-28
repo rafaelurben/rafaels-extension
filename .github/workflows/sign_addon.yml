@@ -30,7 +30,7 @@ jobs:
           channel: unlisted
           apiKey: ${{ secrets.AMO_SIGN_KEY }}
           apiSecret: ${{ secrets.AMO_SIGN_SECRET }}
-          timeout: 604800000
+          timeout: 7200000
 
       - name: "Create Release"
         uses: softprops/action-gh-release@v1
