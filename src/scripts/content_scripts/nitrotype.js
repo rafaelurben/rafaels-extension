@@ -1,7 +1,7 @@
 // 2020, Rafael Urben
 
 function nitrotype_check_session_reload() {
-    console.log("[NitroType SessionSaver] - Testing for session reload button...");
+    console.log("[NitroType LoginHelper] - Testing for session reload button...");
 
     var aTags = document.getElementsByTagName("button");
     var searchText = "Yes, I'm here!";
@@ -15,10 +15,10 @@ function nitrotype_check_session_reload() {
     }
 
     if (found) {
-        console.log("[NitroType SessionSaver] - Button found! Clicking now!");
+        console.log("[NitroType LoginHelper] - Button found! Clicking now!");
         found.click();
     } else {
-        console.log("[NitroType SessionSaver] - No button found. Testing again in a minute...");
+        console.log("[NitroType LoginHelper] - No button found. Testing again in a minute...");
         setTimeout(nitrotype_check_session_reload, 60000);
     }
 }
@@ -26,20 +26,22 @@ function nitrotype_check_session_reload() {
 // Start
 
 function onError(error) {
-    console.log(`[NitroType SessionSaver] - Error: ${error}`);
+    console.log(`[NitroType LoginHelper] - Error: ${error}`);
 }
 
 function onGot(item) {
     state = item.nitrotype_activated || false;
     if (state) {
+        console.log("[NitroType LoginHelper] - Enabled!");
+
         if (location.pathname == "/") {
+            console.log("[NitroType LoginHelper] - Redirecting...");
             location.pathname = "/login";
         }
 
-        console.log("[NitroType SessionSaver] - Activated!");
         nitrotype_check_session_reload();
     } else {
-        console.log("[NitroType SessionSaver] - NOT Activated!");
+        console.log("[NitroType LoginHelper] - Disabled!");
     }
 }
 
