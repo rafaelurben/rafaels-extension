@@ -13,9 +13,8 @@ function kahoot_enter_name() {
     b = i.nextSibling;
     console.log("[Kahoot NameEnterer] - Waiting for user input...");
     i.addEventListener("input", () => {
-        if (i.value === data["name"]
-        ) {
-            setTimeout(() => {b.click()}, 10);
+        if (i.value === data["name"]) {
+            setTimeout(b.click, 10);
             console.log("[Kahoot NameEnterer] - Done!");
         } else {
             i.focus();
