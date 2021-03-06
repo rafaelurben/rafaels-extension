@@ -25,6 +25,12 @@ function openPhotopea(fileUrl, script="") {
     openUrl(url);
 }
 
+function readQR(imageUrl) {
+    data = encodeURI(imageUrl);
+    url = "http://api.qrserver.com/v1/read-qr-code/?fileurl=" + data;
+    openUrl(url);
+}
+
 //
 
 let converters = {
@@ -66,6 +72,12 @@ browser.contextMenus.create({
     contexts: ["image"]
 });
 
+browser.contextMenus.create({
+    id: "image-read-qr",
+    title: "Read QR code",
+    contexts: ["image"]
+});
+
 //
 
 browser.contextMenus.onClicked.addListener(function (info, tab) {
@@ -75,5 +87,7 @@ browser.contextMenus.onClicked.addListener(function (info, tab) {
         openConverter(info.selectionText);
     } else if (info.menuItemId === "image-open-in-photopea") {
         openPhotopea(info.srcUrl, "alert('Loaded document!')");
+    } else if (info.menuItemId === "image-read-qr") {
+        readQR(info.srcUrl);
     }
 });

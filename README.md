@@ -9,3 +9,4 @@ Made for Firefox, may work in other browsers.
 - Encoding / Decoding utils
 - NitroType LoginHelper
 - Kahoot FastJoin
+- QR Reader (powered by goqr.me)
