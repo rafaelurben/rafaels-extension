@@ -31,7 +31,13 @@ function readQR(imageUrl) {
     openUrl(url);
 }
 
-//
+function createQR(text) { 
+    data = encodeURI(text);
+    url = "http://api.qrserver.com/v1/create-qr-code/?data=" + data;
+    openUrl(url);
+}
+
+// Converters
 
 let converters = {
     "base64-text": "Base64 -> Text",
@@ -44,7 +50,19 @@ let converters = {
     "hex-dec": "Hex -> Dec"
 }
 
-//
+// ContextMenu
+
+var seperatorCount = 0;
+
+function addSeperator() {
+    browser.contextMenus.create({
+        id: "separator"+seperatorCount++,
+        type: "separator",
+        contexts: ["selection"]
+    });
+}
+
+/// Selection
 
 browser.contextMenus.create({
     id: "text-open-in-converter",
@@ -52,11 +70,7 @@ browser.contextMenus.create({
     contexts: ["selection"]
 });
 
-browser.contextMenus.create({
-    id: "convert-separator",
-    type: "separator",
-    contexts: ["selection"]
-});
+addSeperator();
 
 for (c in converters) {
     browser.contextMenus.create({
@@ -65,6 +79,16 @@ for (c in converters) {
         contexts: ["selection"]
     });
 }
+
+addSeperator();
+
+browser.contextMenus.create({
+    id: "text-create-qr",
+    title: "Create QR code",
+    contexts: ["selection"]
+});
+
+/// Images
 
 browser.contextMenus.create({
     id: "image-open-in-photopea",
@@ -78,7 +102,7 @@ browser.contextMenus.create({
     contexts: ["image"]
 });
 
-//
+// OnClicked
 
 browser.contextMenus.onClicked.addListener(function (info, tab) {
     if (info.menuItemId.startsWith("convert-")) {
@@ -89,5 +113,7 @@ browser.contextMenus.onClicked.addListener(function (info, tab) {
         openPhotopea(info.srcUrl, "alert('Loaded document!')");
     } else if (info.menuItemId === "image-read-qr") {
         readQR(info.srcUrl);
+    } else if (info.menuItemId === "text-create-qr") {
+        createQR(info.selectionText);
     }
 });

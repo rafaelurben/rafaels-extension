@@ -6,7 +6,19 @@ Made for Firefox, may work in other browsers.
 
 ## Current features
 
-- Encoding / Decoding utils
+### Website specific
+
 - NitroType LoginHelper
 - Kahoot FastJoin
+
+### Context menu
+
+Text selection:
+
+- Encoding / Decoding utils
+- QR Code Generator (powered by goqr.me)
+
+Images:
+
+- Open in Photopea
 - QR Reader (powered by goqr.me)
