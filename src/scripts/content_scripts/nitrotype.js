@@ -25,10 +25,6 @@ function nitrotype_check_session_reload() {
 
 // Start
 
-if (location.pathname == "/") {
-    location.pathname = "/login";
-}
-
 function onError(error) {
     console.log(`[NitroType SessionSaver] - Error: ${error}`);
 }
@@ -36,6 +32,10 @@ function onError(error) {
 function onGot(item) {
     state = item.nitrotype_activated || false;
     if (state) {
+        if (location.pathname == "/") {
+            location.pathname = "/login";
+        }
+
         console.log("[NitroType SessionSaver] - Activated!");
         nitrotype_check_session_reload();
     } else {
